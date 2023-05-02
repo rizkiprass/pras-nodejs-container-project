@@ -1,0 +1,34 @@
+version: 0.2
+env:
+  variables:
+    CONTAINER_NAME: "pras-nodejs-hello-world"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - echo installing nodejs 16
+  pre_build:
+    commands:
+      - echo logging into AWS ECR...
+      - $(aws ecr get-login --no-include-email --region us-west-2)
+      - REPOSITORY_URI=272547513321.dkr.ecr.us-west-2.amazonaws.com/pras-nodejs-helloworld
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo building the Docker image on `date`
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image defitions into imagedefinitions.json file.
+  post_build:
+    commands:
+      - echo Building the Docker image completed on `date`
+      - echo Pushing the Docker image with tag latest into ECR...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+artifacts:
+  files:
+    - imageDetail.json
+    - task-definition.json
+    - appspec.yml
