@@ -5,9 +5,9 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 16
+      nodejs: 12
     commands:
-      - echo installing nodejs 16
+      - echo installing nodejs 12
   pre_build:
     commands:
       - echo logging into AWS ECR...
