@@ -1,0 +1,64 @@
+{
+    "taskDefinitionArn": "<TASK_DEFINITION>",
+    "containerDefinitions": [
+        {
+            "name": "pras-nodejs-hello-world",
+            "image": "<IMAGE1_NAME>",
+            "cpu": 262,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "name": "pras-nodejs-hello-world-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": []
+        }
+    ],
+    "family": "pras-helloworld-td",
+    "taskRoleArn": "arn:aws:iam::272547513321:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::272547513321:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 4,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2"
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2023-05-02T07:40:22.211Z",
+    "registeredBy": "arn:aws:sts::272547513321:assumed-role/AWSReservedSSO_aws_sa_0cde24b8e8bcc0ed/Rizky.Prasetya",
+    "tags": []
+}
