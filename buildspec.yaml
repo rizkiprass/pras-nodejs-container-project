@@ -29,9 +29,9 @@ phases:
       - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
 artifacts:
   files: 
-    - 'image*.json'
-    - 'appspec.yaml'
-    - 'taskdef.json'
+    - image*.json
+    - appspec.yaml
+    - taskdef.json
   secondary-artifacts:
     DefinitionArtifact:
       files:
