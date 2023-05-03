@@ -28,9 +28,10 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
 artifacts:
-  files:
-    - taskdef.json
-    - appspec.yaml
+  files: 
+    - 'image*.json'
+    - 'appspec.yaml'
+    - 'taskdef.json'
   secondary-artifacts:
     DefinitionArtifact:
       files:
