@@ -59,6 +59,5 @@
         "operatingSystemFamily": "LINUX"
     },
     "registeredAt": "2023-05-02T07:40:22.211Z",
-    "registeredBy": "arn:aws:sts::272547513321:assumed-role/AWSReservedSSO_aws_sa_0cde24b8e8bcc0ed/Rizky.Prasetya",
-    "tags": []
+    "registeredBy": "arn:aws:sts::272547513321:assumed-role/AWSReservedSSO_aws_sa_0cde24b8e8bcc0ed/Rizky.Prasetya"
 }
