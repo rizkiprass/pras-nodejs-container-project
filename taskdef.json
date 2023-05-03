@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "pras-nodejs-hello-world",
-            "image": "<IMAGE1_NAME>",
+            "image": "IMAGE1_NAME",
             "cpu": 262,
             "memory": 128,
             "portMappings": [
