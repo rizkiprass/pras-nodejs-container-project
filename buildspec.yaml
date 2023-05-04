@@ -5,9 +5,9 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 16
+      nodejs: 12
     commands:
-      - echo installing nodejs 16
+      - echo installing nodejs 12
   pre_build:
     commands:
       - echo logging into AWS ECR...
@@ -28,7 +28,15 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
 artifacts:
-  files:
-    - imageDetail.json
-    - task-definition.json
-    - appspec.yml
+  files: 
+    - image*.json
+    - appspec.yaml
+    - taskdef.json
+  secondary-artifacts:
+    DefinitionArtifact:
+      files:
+        - appspec.yaml
+        - taskdef.json
+    ImageArtifact:
+      files:
+        - imageDetail.json
