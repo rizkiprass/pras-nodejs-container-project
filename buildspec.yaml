@@ -1,32 +1,45 @@
 version: 0.2
+
 env:
   variables:
-    CONTAINER_NAME: "pras-nodejs-hello-world"
+    AWS_REGION: us-west-2 # checkfor specific region
+    AWS_ACCOUNT_ID: 272547513321
+    IMAGE_NAME: pras-nodejs-helloworld
+    
 phases:
   install:
     runtime-versions:
-      nodejs: 12
+      nodejs: 12  
     commands:
-      - echo installing nodejs 12
+      # - echo Installing Mocha...
+      # - npm install -g mocha (test)
   pre_build:
     commands:
-      - echo logging into AWS ECR...
-      - $(aws ecr get-login --no-include-email --region us-west-2)
-      - REPOSITORY_URI=272547513321.dkr.ecr.us-west-2.amazonaws.com/pras-nodejs-helloworld
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo  Installing   source NPM dependencies...
+      - npm install
+      # - npm install  unit.js
+      - echo Setting up docker
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com     
+
   build:
     commands:
-      - echo building the Docker image on `date`
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image defitions into imagedefinitions.json file.
+      - echo Build started on `date`
+      - echo Compiling the Node.js code
+      # - mocha test.js
   post_build:
     commands:
-      - echo Building the Docker image completed on `date`
-      - echo Pushing the Docker image with tag latest into ECR...
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+      - docker image build -t $IMAGE_NAME .
+      - docker image tag $IMAGE_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest
+      - echo image name =  $IMAGE_NAME:latest
+      - echo image url = $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest
+      - echo Writing image definitions file...
+      - printf '{"ImageURI":"'"$AWS_ACCOUNT_ID"'.dkr.ecr.'"$AWS_REGION"'.amazonaws.com/'"$IMAGE_NAME"':latest"}' > imageDetail.json
+      - cat imageDetail.json
+      - echo Build completed on `date`
 artifacts:
   files: 
     - image*.json
