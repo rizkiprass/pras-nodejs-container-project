@@ -1,4 +1,4 @@
-FROM public.ecr.aws/bitnami/node:latest
+FROM public.ecr.aws/ubuntu/ubuntu:20.04_stable
 
 # Create app directory
 WORKDIR /usr/src/app
