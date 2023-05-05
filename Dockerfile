@@ -15,14 +15,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# Install mysql module
-RUN npm install mysql
-
-# Set environment variables for database connection
-ENV DB_HOST pras-ecs-rds.cztg5toglj5t.us-west-2.rds.amazonaws.com
-ENV DB_USER admin
-ENV DB_PASSWORD FruFpmUGhxpXCHmBFjq3
-ENV DB_NAME pras-ecs-rds
-
 EXPOSE 8080
 CMD [ "node", "server.js" ]
