@@ -6,17 +6,13 @@ const mysql = require('mysql');
 // Constants
 const PORT = 8080;
 const HOST = '0.0.0.0';
-const DB_HOST = 'pras-ecs-rds.cztg5toglj5t.us-west-2.rds.amazonaws.com';
-const DB_USER = 'admin';
-const DB_PASSWORD = 'FruFpmUGhxpXCHmBFjq3';
-const DB_NAME = 'pras-ecs-rds';
 
 // Create MySQL connection pool
 const pool = mysql.createPool({
-  host: DB_HOST,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 // App
@@ -33,7 +29,7 @@ app.get('/', (req, res) => {
             <title>Hello World</title>
           </head>
           <body>
-            <h1>Hello World-v16-test</h1>
+            <h1>Hello World-v18-test</h1>
             <p>The database connection test was successful: ${results[0].solution}</p>
           </body>
         </html>
