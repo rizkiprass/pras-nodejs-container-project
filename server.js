@@ -6,10 +6,10 @@ const mysql = require('mysql');
 // Constants
 const PORT = 8080;
 const HOST = '0.0.0.0';
-const DB_HOST = 'your-rds-endpoint-here';
-const DB_USER = 'your-db-username-here';
-const DB_PASSWORD = 'your-db-password-here';
-const DB_NAME = 'your-db-name-here';
+const DB_HOST = 'pras-ecs-rds.cztg5toglj5t.us-west-2.rds.amazonaws.com';
+const DB_USER = 'admin';
+const DB_PASSWORD = 'FruFpmUGhxpXCHmBFjq3';
+const DB_NAME = 'pras-ecs-rds';
 
 // Create MySQL connection pool
 const pool = mysql.createPool({
