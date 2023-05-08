@@ -1,4 +1,8 @@
 version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /user/src/app
 Resources:
   - TargetService:
       Type: AWS::ECS::Service
