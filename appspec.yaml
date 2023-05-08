@@ -7,3 +7,7 @@ Resources:
         LoadBalancerInfo:
           ContainerName: "pras-nodejs-hello-world"
           ContainerPort: 8080
+hooks:
+  AfterInstall:
+    - location: scripts/get_env_file.sh
+      timeout: 300
