@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
         <title>Hello World</title>
       </head>
       <body>
-        <h1>version-30-fix/h1>
+        <h1>version-30-fix</h1>
       </body>
     </html>
   `);
