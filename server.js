@@ -66,10 +66,10 @@ app.get('/', (req, res) => {
     let html = `
       <html>
         <head>
-          <title>My App - version 2</title>
+          <title>My App - version</title>
         </head>
         <body>
-          <h1>My App</h1>
+          <h1>My App version - v2</h1>
           <table>
             <thead>
               <tr>
