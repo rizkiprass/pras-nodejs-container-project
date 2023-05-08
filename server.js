@@ -40,7 +40,7 @@ connection.connect((err) => {
     // Insert a row into mytable
     connection.query(`
       INSERT INTO mytable (name)
-      VALUES ('John')
+      VALUES ('Doe')
     `, (err) => {
       if (err) {
         console.error('Error inserting row into mytable: ', err);
