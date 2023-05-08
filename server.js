@@ -22,7 +22,23 @@ connection.connect((err) => {
     return;
   }
   console.log('Connected to MySQL as ID ', connection.threadId);
+
+  // Create the mytable table
+  connection.query(`
+    CREATE TABLE mytable (
+      id INT NOT NULL AUTO_INCREMENT,
+      name VARCHAR(255) NOT NULL,
+      PRIMARY KEY (id)
+    );
+  `, (err) => {
+    if (err) {
+      console.error('Error creating mytable table: ', err);
+      return;
+    }
+    console.log('Created mytable table');
+  });
 });
+
 
 // App
 const app = express();
