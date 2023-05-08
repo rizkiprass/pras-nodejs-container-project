@@ -12,6 +12,9 @@ RUN npm install
 # If you are building your code for production
 # RUN npm ci --omit=dev
 
+# Install MySQL client library
+RUN apt-get update && apt-get install -y default-libmysqlclient-dev
+
 # Bundle app source
 COPY . .
 
