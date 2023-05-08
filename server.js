@@ -40,7 +40,7 @@ connection.connect((err) => {
     // Insert a row into mytable
     connection.query(`
       INSERT INTO mytable (name)
-      VALUES ('Doe')
+      VALUES ('TEST')
     `, (err) => {
       if (err) {
         console.error('Error inserting row into mytable: ', err);
@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
           <title>My App - version</title>
         </head>
         <body>
-          <h1>My App version - v2</h1>
+          <h1>My App version - v4</h1>
           <table>
             <thead>
               <tr>
