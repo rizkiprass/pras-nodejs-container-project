@@ -36,21 +36,20 @@ connection.connect((err) => {
       return;
     }
     console.log('Created mytable table');
+
+    // Insert a row into mytable
+    connection.query(`
+      INSERT INTO mytable (name)
+      VALUES ('John')
+    `, (err) => {
+      if (err) {
+        console.error('Error inserting row into mytable: ', err);
+        return;
+      }
+      console.log('Inserted row into mytable');
+    });
   });
 });
-
-// Insert a row into mytable
-connection.query(`
-  INSERT INTO mytable (name)
-  VALUES ('John')
-`, (err) => {
-  if (err) {
-    console.error('Error inserting row into mytable: ', err);
-    return;
-  }
-  console.log('Inserted row into mytable');
-});
-
 
 // App
 const app = express();
