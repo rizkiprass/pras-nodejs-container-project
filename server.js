@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
     let html = `
       <html>
         <head>
-          <title>My App</title>
+          <title>My App - version 2</title>
         </head>
         <body>
           <h1>My App</h1>
