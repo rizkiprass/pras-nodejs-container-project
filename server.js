@@ -39,6 +39,18 @@ connection.connect((err) => {
   });
 });
 
+// Insert a row into mytable
+connection.query(`
+  INSERT INTO mytable (name)
+  VALUES ('John')
+`, (err) => {
+  if (err) {
+    console.error('Error inserting row into mytable: ', err);
+    return;
+  }
+  console.log('Inserted row into mytable');
+});
+
 
 // App
 const app = express();
@@ -50,18 +62,45 @@ app.get('/', (req, res) => {
       res.status(500).send('Error executing MySQL query');
       return;
     }
-    // Send the query results as a response
-    res.send(`
+
+    // Build the HTML response
+    let html = `
       <html>
         <head>
-          <title>Hello World</title>
+          <title>My App</title>
         </head>
         <body>
-          <h1>version-17-test-reverted</h1>
-          <pre>${JSON.stringify(results, null, 2)}</pre>
+          <h1>My App</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+
+    // Add the results to the HTML response
+    results.forEach(row => {
+      html += `
+        <tr>
+          <td>${row.id}</td>
+          <td>${row.name}</td>
+        </tr>
+      `;
+    });
+
+    // Close the HTML response
+    html += `
+            </tbody>
+          </table>
         </body>
       </html>
-    `);
+    `;
+
+    // Send the response to the client
+    res.send(html);
   });
 });
 
