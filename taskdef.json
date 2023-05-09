@@ -19,6 +19,24 @@
             "environment": [],
             "mountPoints": [],
             "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "DB_NAME",
+                    "valueFrom": "arn:aws:secretsmanager:us-west-2:272547513321:secret:dev/nodejsapp/mysqlrds-6kP9IO:DB_NAME::"
+                },
+                {
+                    "name": "DB_HOST",
+                    "valueFrom": "arn:aws:secretsmanager:us-west-2:272547513321:secret:dev/nodejsapp/mysqlrds-6kP9IO:DB_HOST::"
+                },
+                {
+                    "name": "DB_USER",
+                    "valueFrom": "arn:aws:secretsmanager:us-west-2:272547513321:secret:dev/nodejsapp/mysqlrds-6kP9IO:DB_USER::"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "valueFrom": "arn:aws:secretsmanager:us-west-2:272547513321:secret:dev/nodejsapp/mysqlrds-6kP9IO:DB_PASSWORD::"
+                }
+            ],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
