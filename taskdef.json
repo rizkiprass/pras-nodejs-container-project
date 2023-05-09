@@ -16,7 +16,24 @@
             "essential": true,
             "entryPoint": [],
             "command": [],
-            "environment": [],
+            "environment": [
+                {
+                    "name": "DB_NAME",
+                    "value": "ecsrds"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "pras-ecs-rds.cztg5toglj5t.us-west-2.rds.amazonaws.com"
+                },
+                {
+                    "name": "DB_USER",
+                    "value": "admin"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "value": "FruFpmUGhxpXCHmBFjq3"
+                }
+            ],
             "mountPoints": [],
             "volumesFrom": [],
             "logConfiguration": {
