@@ -110,23 +110,23 @@ app.get("/user/:user_id", (req, res) => {
 });
 
 /* post */
-app.post("/user", (req, res) => {
-  const { user_id, name, address } = req.body;
+// app.post("/user", (req, res) => {
+//   const { user_id, name, address } = req.body;
 
-  const sql = `INSERT INTO user (user_id, name, address) VALUES (${user_id}, '${name}', '${address}')`;
-  db.query(sql, (err, fields) => {
-    if (err) response(500, "invalid", "error", res);
-    if (fields?.affectedRows) {
-      const data = {
-        isSuccess: fields.affectedRows,
-        id: fields.insertId,
-      };
-      response(200, data, "data added successfuly", res);
-    }
-  });
-  // res.send("ok");
-  // response(200, "posting", "data added successfuly", res);
-});
+//   const sql = `INSERT INTO user (user_id, name, address) VALUES (${user_id}, '${name}', '${address}')`;
+//   db.query(sql, (err, fields) => {
+//     if (err) response(500, "invalid", "error", res);
+//     if (fields?.affectedRows) {
+//       const data = {
+//         isSuccess: fields.affectedRows,
+//         id: fields.insertId,
+//       };
+//       response(200, data, "data added successfuly", res);
+//     }
+//   });
+//   // res.send("ok");
+//   // response(200, "posting", "data added successfuly", res);
+// });
 
 /* put */
 app.put("/user", (req, res) => {
