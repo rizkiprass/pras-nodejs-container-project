@@ -129,42 +129,42 @@ app.get("/user/:user_id", (req, res) => {
 // });
 
 /* put */
-app.put("/user", (req, res) => {
-  const { user_id, name, address } = req.body;
-  const sql = `UPDATE user SET name = "${name}", address = "${address}" WHERE user_id = ${user_id}`;
+// app.put("/user", (req, res) => {
+//   const { user_id, name, address } = req.body;
+//   const sql = `UPDATE user SET name = "${name}", address = "${address}" WHERE user_id = ${user_id}`;
 
-  db.query(sql, (err, fields) => {
-    if (err) response(500, "invalid", "error", res);
-    if (fields?.affectedRows) {
-      const data = {
-        isSuccess: fields.affectedRows,
-        message: fields.message,
-      };
-      response(200, data, "Update data successfuly", res);
-    } else {
-      response(404, "user not found", "error", res);
-    }
-    console.log(fields);
-  });
-});
+//   db.query(sql, (err, fields) => {
+//     if (err) response(500, "invalid", "error", res);
+//     if (fields?.affectedRows) {
+//       const data = {
+//         isSuccess: fields.affectedRows,
+//         message: fields.message,
+//       };
+//       response(200, data, "Update data successfuly", res);
+//     } else {
+//       response(404, "user not found", "error", res);
+//     }
+//     console.log(fields);
+//   });
+// });
 
 /* delete */
-app.delete("/user", (req, res) => {
-  const { user_id } = req.body;
-  const sql = `DELETE FROM user WHERE user_id = ${user_id}`;
+// app.delete("/user", (req, res) => {
+//   const { user_id } = req.body;
+//   const sql = `DELETE FROM user WHERE user_id = ${user_id}`;
 
-  db.query(sql, (err, fields) => {
-    if (err) response(500, "invalid", "error", res);
-    if (fields?.affectedRows) {
-      const data = {
-        isDeleted: fields.affectedRows,
-      };
-      response(200, data, "Delete data successfuly", res);
-    } else {
-      response(404, "user not found", "error", res);
-    }
-  });
-});
+//   db.query(sql, (err, fields) => {
+//     if (err) response(500, "invalid", "error", res);
+//     if (fields?.affectedRows) {
+//       const data = {
+//         isDeleted: fields.affectedRows,
+//       };
+//       response(200, data, "Delete data successfuly", res);
+//     } else {
+//       response(404, "user not found", "error", res);
+//     }
+//   });
+// });
 
 ///////////////// DB END //////////////////////////
 
