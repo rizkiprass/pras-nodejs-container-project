@@ -201,7 +201,7 @@ app.get("/api/images/popcat", (req, res) => {
 
 ///////////////// S3 END //////////////////////////
 
-app.listen(8080, () => {
+app.listen(8080, "0.0.0.0", () => {
   console.log("Server started on port 8080");
 });
 
