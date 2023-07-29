@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "master",
-  password: "cl8Lgbom!V72T^1FNIxkSrnmbmIg$bjx",
-  database: "telaluldb",
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
 });
 
 module.exports = db;
