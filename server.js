@@ -5,6 +5,12 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const db = require("./connection");
 const response = require("./response");
+const cors = require("cors");
+
+app.use(cors()); // This enables CORS for all routes
+
+const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || "localhost";
 
 app.use(bodyParser.json());
 
@@ -201,8 +207,8 @@ app.get("/api/images/popcat", (req, res) => {
 
 ///////////////// S3 END //////////////////////////
 
-app.listen(8080, "0.0.0.0", () => {
-  console.log("Server started on port 8080");
+app.listen(PORT, HOST, () => {
+  console.log(`Server started on ${HOST}:${PORT}`);
 });
 
 // const port = 8080;
