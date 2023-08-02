@@ -15,7 +15,7 @@ const HOST = process.env.HOST || "localhost";
 app.use(bodyParser.json());
 
 app.get("/test", (req, res) => {
-  res.send("hello test");
+  res.send("hello test2");
 });
 
 ////////////////////////////Testing START//////////////////////////////////
